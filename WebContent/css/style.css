@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+a{
+	text-decoration: none;
+}
+.main{
+	margin: 0px auto;
+	width: 300px;
+}
+.login{
+	margin-top: 20px;
+	margin-left: 30px;
+}
+.submit{
+	height: 30px;
+	width: 236px;
+	text-align: center;
+	margin-left: 2px;
+}
+.input{
+	margin-left: 20px;
+}
+.register{
+	margin-left: 166px;
+	font-size: 11pt;
+}
+.rg{
+	height: 30px;
+	width: 260px;
+	text-align: center;
+	margin-left: 2px;
+	
+}
+.lg{
+	margin-left: 222px;
+	font-size: 11pt;
+}

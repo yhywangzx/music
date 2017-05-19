@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+ 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- 类型别名 -->
+	<typeAliases>
+		<typeAlias alias="User" type="com.iflytek.movie.po.User" />
+		<typeAlias alias="Movie" type="com.iflytek.movie.po.Movie" />
+		<typeAlias alias="Collect" type="com.iflytek.movie.po.Collect" />
+	</typeAliases>
+	
+	<!-- 列出映射文件 -->
+	<mappers>
+		<mapper resource="com/iflytek/movie/dao/mapper/UserDaoMapper.xml" />
+		<mapper resource="com/iflytek/movie/dao/mapper/MovieDaoMapper.xml" />
+		<mapper resource="com/iflytek/movie/dao/mapper/CollectDaoMapper.xml" />
+	</mappers>
+</configuration>
+
+
+
+
+

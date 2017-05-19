@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+ 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--等价于dao接口的实现 namespace必须和接口的类路径一样 -->
+<mapper namespace="com.iflytek.movie.dao.CollectDao">
+	<resultMap type="Collect" id="CollectResultMap">
+		<id property="id" column="id" />
+		<result property="movieId" column="movieId" />
+		<result property="UserId" column="UserId" />
+		<result property="userName" column="userName" />
+		<result property="movieName" column="movieName" />
+		<result property="director" column="director" />
+		<result property="star" column="star" />
+		<result property="time" column="time" />
+		<result property="path" column="path" />
+	</resultMap>
+	
+	<!-- id必须和接口中的方法名一样 --> 
+	<insert id="add" parameterType="Collect">
+		<![CDATA[ 
+             insert into collect(movieId,UserId) values(#{movieId},#{UserId})
+        ]]>
+	</insert>
+	<delete id="delete" parameterType="int">
+		<![CDATA[ 
+            delete from collect where id = #{id}
+        ]]>
+	</delete>
+		<delete id="deleteByUserId" parameterType="int">
+		<![CDATA[ 
+            delete from collect where movieid = #{movieId}
+        ]]>
+	</delete>
+	<select id="getTotalCollect" resultType="int" >
+		<![CDATA[ 
+             select count(*) from collect where userid = #{userId}
+        ]]>
+	</select>
+	<select id="getCollectList" resultMap="CollectResultMap">
+		<![CDATA[ 
+             select c.*,m.mname moviename,m.director director,m.star star,m.time time,m.path path,u.name username from collect c inner join movie m on c.movieid = m.id inner join user u on m.userid = u.id where c.userid = #{userId} limit #{pageIndex},#{pageSize}
+        ]]>
+	</select>
+	
+	<select id="getCollect"  resultMap="CollectResultMap">
+		<![CDATA[ 
+             select * from collect where userid = #{userId} and movieid = #{movieId}
+        ]]>
+	</select>
+</mapper>

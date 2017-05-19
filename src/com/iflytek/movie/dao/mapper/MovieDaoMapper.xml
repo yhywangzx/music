@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+ 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--等价于dao接口的实现 namespace必须和接口的类路径一样 -->
+<mapper namespace="com.iflytek.movie.dao.MovieDao">
+	
+	<resultMap type="Movie" id="MovieResultMap">
+		<id property="id" column="id" />
+		<result property="mname" column="mname" />
+		<result property="director" column="director" />
+		<result property="star" column="star" />
+		<result property="time" column="time" />
+		<result property="path" column="path" />
+		<result property="userId" column="userId" />
+		<result property="userName" column="userName" />
+	</resultMap>
+	<!-- id必须和接口中的方法名一样 --> 
+	<insert id="add" parameterType="Movie">
+		<![CDATA[ 
+             insert into movie(mname,director,star,time,path,userId) values(#{mname},#{director},#{star},#{time},#{path},#{userId})
+        ]]>
+	</insert>
+	<update id="update">
+		<![CDATA[ 
+             update movie set mname = #{mname} , director = #{director} , star = #{star} where id = #{movieId}
+        ]]>
+	</update>
+	<delete id="delete" parameterType="int">
+		<![CDATA[ 
+            delete from movie where id = #{movieId} 
+        ]]>
+	</delete>
+	<select id="getMovie" parameterType="Movie" resultMap="MovieResultMap">
+		<![CDATA[ 
+            select * from movie where id = #{movieId} 
+        ]]>
+	</select>
+	<select id="getTotalMovie" resultType="int">
+		<![CDATA[ 
+             select count(*) from movie
+        ]]>
+	</select>
+	<select id="getMovieList" resultMap="MovieResultMap">
+		<![CDATA[ 
+            select m.*,u.name username from movie m inner join user u on m.userid = u.id limit #{pageIndex},#{pageSize}
+        ]]>
+	</select>
+	<select id="getMyTotalPage" resultType="int">
+		<![CDATA[ 
+            select count(*) from movie where userid = #{userId}
+        ]]>
+	</select>
+	<select id="getMyMovieList" resultMap="MovieResultMap">
+		<![CDATA[ 
+            select * from movie where userid = #{userId} limit #{pageIndex},#{pageSize}
+        ]]>
+	</select>
+</mapper>
